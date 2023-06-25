@@ -5,17 +5,10 @@
 class Strobe : public Pattern {
 public:
     struct Opts {
-        CRGBSet leds;
-        Palette* palette;
         int bpm;
     };
     
-    Strobe(Opts opts):
-        Pattern(),
-        leds(opts.leds),
-        bpm(opts.bpm)
-    {
-        this->setPalette(opts.palette),
+    Strobe(CRGBSet leds, Palette* palette, Opts opts): Pattern(leds, palette), bpm(opts.bpm) {
         this->periodMs = 60000 / this->bpm;
         this->nextToggle = millis();
     }
@@ -27,7 +20,7 @@ public:
         }
         
         if (this->on) {
-            this->leds = this->color(0);
+            this->leds = *palette[0];
         } else {
             this->leds = CRGB::Black;
         }
@@ -36,7 +29,6 @@ public:
     }
 
 protected:
-    CRGBSet leds;
     int bpm;
 
 private:

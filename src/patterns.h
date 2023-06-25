@@ -1,6 +1,5 @@
 #pragma once
 
-#include "utils.h"
 #include "Patterns/SolidColor.h"
 #include "Patterns/Strobe.h"
 #include "Patterns/Twinkle.h"
@@ -12,33 +11,21 @@ const int NUM_PATTERNS = 6;
 
 PatternFactory PATTERN_FACTORIES[NUM_PATTERNS] = {
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new SolidColor(
-            SolidColor::Opts { leds, palette }
-        );
+        return new SolidColor(leds, palette);
     },
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new Strobe(
-            Strobe::Opts { leds, palette, bpm: 300 }
-        );
+        return new Strobe(leds, palette, Strobe::Opts { bpm: 300 });
     },
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new Strobe(
-            Strobe::Opts { leds, palette, bpm: 600 }
-        );
+        return new Strobe(leds, palette, Strobe::Opts { bpm: 600 });
     },
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new Strobe(
-            Strobe::Opts { leds, palette, bpm: 1200 }
-        );
+        return new Strobe(leds, palette, Strobe::Opts { bpm: 1200 });
     },
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new Twinkle(
-            Twinkle::Opts { leds, palette }
-        );
+        return new Twinkle(leds, palette);
     },
     [](CRGBSet leds, Palette* palette) -> Pattern* {
-        return new Off(
-            Off::Opts { leds }
-        );
+        return new Off(leds, palette);
     },
 };

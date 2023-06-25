@@ -3,20 +3,28 @@
 #include "FastLED.h"
 
 #include "../palettes.h"
+#include "../Direction.h"
 
 class Pattern {
 public:
+    Pattern(CRGBSet leds, Palette* palette, Direction direction = Direction::Forward) :
+        leds(leds),
+        palette(palette),
+        direction(direction)
+    {}
+
     virtual void run() = 0;
 
     void setPalette(Palette* palette) {
         this->palette = palette;
     }
 
-    CHSV color(uint8_t index) {
-        // TODO support palettes with multiple colors
-        return *this->palette[index];
+    CHSV* color() {
+        return this->palette[0];
     }
 
 protected:
+    CRGBSet leds;
     Palette* palette;
+    Direction direction;
 };

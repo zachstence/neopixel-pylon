@@ -8,13 +8,10 @@ public:
         CRGBSet leds;
     };
 
-    Off(Opts opts): Pattern({}), leds(opts.leds) {}
+    Off(CRGBSet leds, Palette* palette): Pattern(leds, palette) {}
 
     void run() {
         this->leds = CRGB::Black;
         FastLED.show();
     }
-
-private:
-    CRGBSet leds;
 };

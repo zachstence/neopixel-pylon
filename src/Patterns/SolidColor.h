@@ -1,23 +1,13 @@
 #include "FastLED.h"
 
 #include "Pattern.h"
-#include "../utils.h"
 
 class SolidColor : public Pattern {
 public:
-    struct Opts {
-        CRGBSet leds;
-        Palette* palette;  
-    };
-
-    SolidColor(Opts opts) : Pattern(), leds(opts.leds) {
-        this->setPalette(opts.palette);
-    }
+    SolidColor(CRGBSet leds, Palette* palette) : Pattern(leds, palette) {}
 
     void run() override {
-        this->leds = Pattern::color(0);
+        this->leds.fill_solid(*this->color());
         FastLED.show();
     }
-private:
-    CRGBSet leds;
 };
