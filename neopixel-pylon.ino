@@ -35,10 +35,7 @@ void setup() {
 }
 
 void loop() {
-    EVERY_N_SECONDS(2) {
-        cyclePalette();
-        cyclePattern();
-    }
-
-    currentPattern->run();
+    zones[0]->fill_solid(CRGB::Red);
+    zones[1]->fill_solid(CRGB::Blue);
+    FastLED.show();
 }
