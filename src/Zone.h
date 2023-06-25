@@ -10,7 +10,14 @@ class Zone {
 public:
     CRGBSet leds;
 
-    Zone(CRGBSet leds, Palette* palette, PatternFactory factory, Direction direction = Direction::Forward) : leds(leds), palette(palette), direction(direction) {
+    Zone(CRGBSet leds, Palette* palette, PatternFactory factory, Direction direction = Direction::Forward) :
+        leds(leds),
+        palette(palette),
+        direction(direction)
+    {
+        Serial.println("Zone()");
+        Serial.print("  Direction: ");
+        Serial.println(this->direction);
         this->setPattern(factory);
     }
 
@@ -23,7 +30,11 @@ public:
         if (this->pattern != nullptr) {
             delete this->pattern;
         }
-        this->pattern = factory(this->leds, this->palette);
+        this->pattern = factory(this->leds, this->palette, this->direction);
+    }
+
+    Direction getDirection() {
+        return this->direction;
     }
 
     void clear() {

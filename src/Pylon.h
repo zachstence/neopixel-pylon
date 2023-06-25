@@ -57,7 +57,9 @@ public:
     void runStartupAnimation() {
         for (int i = 0; i < LEDS_PER_ZONE; i++) {
             for (int z = 0; z < NUM_ZONES; z++) {
-                this->zones[z]->leds[i] = CRGB::White;
+                auto zone = this->zones[z];
+                int _i = zone->getDirection() == Direction::Forward ? i : zone->leds.size() - i - 1;
+                zone->leds[_i] = CRGB::White;
             }
             FastLED.show();
             delay(50);
