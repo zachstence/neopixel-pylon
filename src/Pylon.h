@@ -22,7 +22,8 @@ public:
         for (int i = 0; i < NUM_ZONES; i++) {
             int start = i * LEDS_PER_ZONE;
             int end = start + LEDS_PER_ZONE - 1;
-            Zone* zone = new Zone(CRGBSet(this->leds, start, end), palette, pattern);
+            auto direction = (i % 2 == 0) ? Direction::Forward : Direction::Backward;
+            Zone* zone = new Zone(CRGBSet(this->leds, start, end), palette, pattern, direction);
             zones[i] = zone;
         }
 
