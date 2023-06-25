@@ -10,17 +10,24 @@ public:
     };
 
     Twinkle(CRGBSet leds, Palette* palette): Pattern(leds, palette) {
+        Serial.println("Twinkle()");
         this->specs = new TwinkleSpec[this->leds.len];
         for (auto i = 0; i < this->leds.len; i++) {
             this->specs[i] = this->randomTwinkleSpec();
         }
+        Serial.println("Twinkle() done");
     }
 
     ~Twinkle() {
+        Serial.println("~Twinkle()");
         delete this->specs;
+        Serial.println("~Twinkle() done");
     }
 
     void run() {
+        EVERY_N_MILLIS(500) {
+            Serial.println("Twinkle.run()");
+        }
         for (auto i = 0; i < this->leds.len; i++) {
             uint8_t v = this->beat(i);
             this->leds[i] = CHSV(this->color()->h, this->color()->s, v);

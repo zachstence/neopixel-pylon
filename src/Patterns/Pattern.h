@@ -11,7 +11,13 @@ public:
         leds(leds),
         palette(palette),
         direction(direction)
-    {}
+    {
+        Serial.println("Pattern()");
+    }
+
+    virtual ~Pattern() {
+        Serial.println("~Pattern()");
+    }
 
     virtual void run() = 0;
 

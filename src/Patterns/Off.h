@@ -4,10 +4,6 @@
 
 class Off : public Pattern {
 public:
-    struct Opts {
-        CRGBSet leds;
-    };
-
     Off(CRGBSet leds, Palette* palette): Pattern(leds, palette) {}
 
     void run() {
