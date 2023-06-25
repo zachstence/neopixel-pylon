@@ -1,0 +1,9 @@
+#pragma once
+
+#define LEDS_PIN 15
+
+#define DEFAULT_BRIGHTNESS_PERCENT 8
+
+#define NUM_SIDES 4
+#define LEDS_PER_SIDE 30
+#define NUM_LEDS NUM_SIDES * LEDS_PER_SIDE
