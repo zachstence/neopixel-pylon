@@ -2,5 +2,5 @@
     "sketch": "neopixel-pylon.ino",
     "output": "build",
     "board": "arduino:avr:leonardo",
-    "port": "COM13"
+    "port": "COM3"
 }
